@@ -1,0 +1,21 @@
+[
+    {
+        "image": "https://www.propertyguides.com/italy/media/sites/6/Cathedral-Duomo-di-Milano-and-Vittorio-Emanuele-gallery-in-Square-Piazza-Duomo-at-sunny-morning-Milan-Italy..jpg",
+        "cityName": "Milan",
+        "countryName": "Italy",
+        "cityPopulation": "1400000",
+        "metroPopulation": "8200000",
+        "density": "1399",
+        "wikipedia": "https://en.wikipedia.org/wiki/Milan"
+    },
+    
+    {
+        "image": "https://www.wantedinrome.com/i/preview/storage/uploads/2020/05/misconceptions_Naples.jpg",
+        "cityName": "Naples",
+        "countryName": "Italy",
+        "cityPopulation": "967000",
+        "metroPopulation": "3085000",
+        "density": "8100",
+        "wikipedia": "https://en.wikipedia.org/wiki/Naples"
+    }
+]
