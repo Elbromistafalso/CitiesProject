@@ -23,9 +23,9 @@ let CityCardComponent = (props) => {
     image: Proptypes.string.isRequired,
     cityName: Proptypes.string.isRequired,
     countryName: Proptypes.string.isRequired,
-    cityPopulation: Proptypes.number.isRequired,
-    metroPopulation: Proptypes.number.isRequired,
-    density: Proptypes.number.isRequired,
+    cityPopulation: Proptypes.string.isRequired,
+    metroPopulation: Proptypes.string.isRequired,
+    density: Proptypes.string.isRequired,
     wikipedia: Proptypes.string.isRequired
  };
 
