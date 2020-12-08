@@ -6,7 +6,7 @@ let FormComponent = (props) => {
     return(
 
         <div>
-            <form className="form" onSubmit={props.onFormSubmit}>
+            <form className="form">
                 <div className="form-group">
                     <label>Name: </label>
                     <input className="form-control" value={props.name} onChange={props.onNameChange}></input>
@@ -35,7 +35,8 @@ let FormComponent = (props) => {
                     <label>Wikipedia Url: </label>
                     <input className="form-control" value={props.wikiUrl} onChange={props.onWikiChange}></input>
                 </div>
-            <button className="btn btn-primary" type="submit">{props.buttonName}</button>
+            <button className="btn" onClick={props.onSaveSubmit}>Save</button>
+            <button className="btn" onClick={props.onUpdateSubmit}>Update</button>
             </form>
         </div>
     )
@@ -51,9 +52,9 @@ FormComponent.propTypes = {
     metroP: Proptypes.string.isRequired,
     density: Proptypes.string.isRequired,
     wikiUrl: Proptypes.string.isRequired,
-    buttonName: Proptypes.string.isRequired,
 
-    onFormSubmit: Proptypes.func.isRequired,
+    onSaveSubmit: Proptypes.func.isRequired,
+    onUpdateSubmit: Proptypes.func.isRequired,
     onNameChange: Proptypes.func.isRequired,
     onCountryChange: Proptypes.func.isRequired,
     onImageUrlChange: Proptypes.func.isRequired,

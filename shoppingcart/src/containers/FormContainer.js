@@ -93,18 +93,27 @@ class FormContainer extends React.Component{
 
         axios.post("http://localhost:8500/add", cityCard);
 
-        }
-
-
+        this.setState({name: ""})
+        this.setState({imageUrl: ""})
+        this.setState({country: ""})
+        this.setState({cityP: ""})
+        this.setState({metroP: ""})
+        this.setState({density: ""})
+        this.setState({wikiUrl: ""})
+    }
+    
         handleDeleteSubmit = (e) => {
 
 
+            e.preventDefault();
             axios.delete("http://localhost:8500/delete/" + this.state.deleteName);
+            this.setState({deleteName: ""})
             
         }
 
         handleUpdateSubmit = (e) => {
 
+            e.preventDefault();
             let cityCard = {
 
                 image : this.state.imageUrl,
@@ -117,6 +126,14 @@ class FormContainer extends React.Component{
             };
 
             axios.put("http://localhost:8500/update/" + this.state.name, cityCard);
+
+        this.setState({name: ""})
+        this.setState({imageUrl: ""})
+        this.setState({country: ""})
+        this.setState({cityP: ""})
+        this.setState({metroP: ""})
+        this.setState({density: ""})
+        this.setState({wikiUrl: ""})
         }
 
 
@@ -137,8 +154,8 @@ class FormContainer extends React.Component{
             metroP={this.state.metroP}
             density={this.state.density}
             wikiUrl={this.state.wikiUrl}
-            buttonName="Save"
-            onFormSubmit={this.handleSubmit}
+            onSaveSubmit={this.handleSubmit}
+            onUpdateSubmit={this.handleUpdateSubmit}
             onNameChange={this.handleChangeName}
             onCountryChange={this.handleChangeCountry}
             onImageUrlChange={this.handleChangeImageUrl}
@@ -152,26 +169,6 @@ class FormContainer extends React.Component{
               name={this.state.deleteName}
               onNameChange={this.handleDeleteChangeName}
               onFormSubmit={this.handleDeleteSubmit}/>
-
-<FormComponent
-
-name={this.state.name}
-country={this.state.country}
-imgUrl ={this.state.imageUrl}
-cityP ={this.state.cityP}
-metroP={this.state.metroP}
-density={this.state.density}
-wikiUrl={this.state.wikiUrl}
-buttonName="Update"
-onFormSubmit={this.handleUpdateSubmit}
-onNameChange={this.handleChangeName}
-onCountryChange={this.handleChangeCountry}
-onImageUrlChange={this.handleChangeImageUrl}
-onCityPChange={this.handleChangeCityP}
-onMetroPChange={this.handleChangeMetroP}
-onDensityChange={this.handleChangeDensity}
-onWikiChange={this.handleChangeWikiUrl}            
-/>
 
 
             </div>
