@@ -35,7 +35,7 @@ let FormComponent = (props) => {
                     <label>Wikipedia Url: </label>
                     <input className="form-control" value={props.wikiUrl} onChange={props.onWikiChange}></input>
                 </div>
-                <button className="btn btn-primary" type="submit">Save</button>
+            <button className="btn btn-primary" type="submit">{props.buttonName}</button>
             </form>
         </div>
     )
@@ -51,6 +51,7 @@ FormComponent.propTypes = {
     metroP: Proptypes.string.isRequired,
     density: Proptypes.string.isRequired,
     wikiUrl: Proptypes.string.isRequired,
+    buttonName: Proptypes.string.isRequired,
 
     onFormSubmit: Proptypes.func.isRequired,
     onNameChange: Proptypes.func.isRequired,

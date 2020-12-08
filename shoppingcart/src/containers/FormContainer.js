@@ -1,5 +1,7 @@
 import React from 'react';
 import FormComponent from '../components/FormComponent';
+import DeleteFormComponent from '../components/DeleteFormComponent';
+import axios from 'axios';
 
 class FormContainer extends React.Component{
 
@@ -14,7 +16,8 @@ class FormContainer extends React.Component{
             cityP: "",
             metroP: "",
             density: "",
-            wikiUrl: ""
+            wikiUrl: "",
+            deleteName: ""
         }
     }
 
@@ -24,6 +27,13 @@ class FormContainer extends React.Component{
 
         this.setState({name: e.target.value})
     }
+
+    handleDeleteChangeName = (e) => {
+
+        e.preventDefault();
+        this.setState({deleteName: e.target.value})
+    }
+
 
     handleChangeImageUrl = (e) => {
 
@@ -81,18 +91,36 @@ class FormContainer extends React.Component{
             wikipedia: this.state.wikiUrl
         };
 
-        let object = JSON.stringify(cityCard, null, 2);
-        let fs = require('fs');
-        fs.readFile('cities.json', (err,data) => {
+        axios.post("http://localhost:8500/add", cityCard);
 
-            let json = JSON.parse(data);
-            json.push(object);
-            fs.writeFile('cities.json', JSON.stringify(json));
-
-        })
+        }
 
 
-    }
+        handleDeleteSubmit = (e) => {
+
+
+            axios.delete("http://localhost:8500/delete/" + this.state.deleteName);
+            
+        }
+
+        handleUpdateSubmit = (e) => {
+
+            let cityCard = {
+
+                image : this.state.imageUrl,
+                cityName: this.state.name,
+                countryName: this.state.country,
+                cityPopulation: this.state.cityP,
+                metroPopulation: this.state.metroP,
+                density: this.state.density,
+                wikipedia: this.state.wikiUrl
+            };
+
+            axios.put("http://localhost:8500/update/" + this.state.name, cityCard);
+        }
+
+
+    
 
     render(){
 
@@ -109,6 +137,7 @@ class FormContainer extends React.Component{
             metroP={this.state.metroP}
             density={this.state.density}
             wikiUrl={this.state.wikiUrl}
+            buttonName="Save"
             onFormSubmit={this.handleSubmit}
             onNameChange={this.handleChangeName}
             onCountryChange={this.handleChangeCountry}
@@ -119,7 +148,37 @@ class FormContainer extends React.Component{
             onWikiChange={this.handleChangeWikiUrl}            
             />
 
+            <DeleteFormComponent
+              name={this.state.deleteName}
+              onNameChange={this.handleDeleteChangeName}
+              onFormSubmit={this.handleDeleteSubmit}/>
+
+<FormComponent
+
+name={this.state.name}
+country={this.state.country}
+imgUrl ={this.state.imageUrl}
+cityP ={this.state.cityP}
+metroP={this.state.metroP}
+density={this.state.density}
+wikiUrl={this.state.wikiUrl}
+buttonName="Update"
+onFormSubmit={this.handleUpdateSubmit}
+onNameChange={this.handleChangeName}
+onCountryChange={this.handleChangeCountry}
+onImageUrlChange={this.handleChangeImageUrl}
+onCityPChange={this.handleChangeCityP}
+onMetroPChange={this.handleChangeMetroP}
+onDensityChange={this.handleChangeDensity}
+onWikiChange={this.handleChangeWikiUrl}            
+/>
+
+
             </div>
+
+            
+
+            
         )
 
 

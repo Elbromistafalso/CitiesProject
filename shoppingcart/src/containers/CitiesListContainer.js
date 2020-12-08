@@ -1,6 +1,8 @@
 import React from 'react';
 import Cities from '../cities.json';
 import CitiesListComponent from '../components/CitiesListComponent';
+import axios from 'axios';
+
 
 // let CitiesListContainer = () => {
 
@@ -18,7 +20,20 @@ class CitiesListContainer extends React.Component{
 
     componentDidMount(){
 
-        this.setState({citiesCards : Cities})
+        axios.get("http://localhost:8500/cities")
+        .then((respone) => {
+
+            this.setState({citiesCards :respone.data})
+
+        })
+        .catch((error) => {
+
+            console.log(error);
+        })
+
+        
+
+        
 
     }
 
